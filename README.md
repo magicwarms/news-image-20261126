@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/news-image-20261126/magicwarms/news-image-20261126/rank.svg)](https://make.fun/bounty/news-image-20261126/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261126)
 [![reward](https://make.fun/badge/news-image-20261126/magicwarms/news-image-20261126/reward.svg)](https://make.fun/bounty/news-image-20261126?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261126)
 
-A one-page front page of the world's news on Thursday 26 November 2026: new US tariffs, Ukraine's strike on a Russian air base, the Cairo tanker fire, Kim Jong Un's nuclear push, the Netanyahu case, Hong Kong's Tai Po fire anniversary, Hera's look at the DART crater, the FCC's SpaceX approval, AI jitters on Wall Street and the postponed Macy's parade. `poster/poster.html` lays it out, `poster/render.mjs` renders it with headless Chrome and ffmpeg, and `main.ts` copies the committed `entry.png` to the output folder. The two photos are AI-made illustrations; the rest is drawn in HTML and SVG.
+A one-page front page of the world's news on Thursday 26 November 2026: 35 stories from six continents, each checked against two or more outlets. The lead is the new US tariffs on 14 trade partners. Below it are Ukraine's strike on Savasleyka air base and drawn scenes for Hormuz, Cairo, the postponed Macy's parade, Kim Jong Un's nuclear push, the Netanyahu case and Hera's look at the DART crater. A hand-drawn world map pins them, and region lists carry the rest. `poster/poster.html` lays it out, `poster/render.mjs` renders it with headless Chrome and ffmpeg, and `main.ts` copies the committed `entry.png` to the output folder. The two photos are AI-made illustrations; everything else is drawn in HTML and SVG.
 
 ## Run it
 

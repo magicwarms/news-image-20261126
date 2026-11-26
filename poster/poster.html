@@ -4,194 +4,264 @@
 <meta charset="utf-8">
 <title>Thursday 26 November 2026</title>
 <style>
-  :root {
-    --paper: #f3efe6;
-    --ink: #16181d;
-    --muted: #4c5058;
-    --red: #b42318;
-    --rule: #16181d;
-  }
+  :root { --paper: #f3efe6; --ink: #16181d; --muted: #4c5058; --red: #b42318; --sea: #dfe3df; --land: #c9c2b2; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 1024px; height: 1024px; overflow: hidden; }
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: Bahnschrift, "Arial Narrow", Arial, sans-serif;
-    font-stretch: 100%; font-weight: 400;
-    padding: 22px 28px 0;
-  }
-  .cond { font-stretch: 75%; font-weight: 700; }
-  .tag {
-    display: block;
-    font-size: 15px;
-    letter-spacing: 0.08em;
-    color: var(--red);
-    font-stretch: 100%; font-weight: 700;
-    margin-bottom: 3px;
-  }
-  h1, h2, h3, h4 { font-stretch: 75%; font-weight: 700; line-height: 0.98; }
-  p.sub { font-size: 17px; line-height: 1.2; color: var(--muted); margin-top: 6px; }
+  body { background: var(--paper); color: var(--ink); padding: 16px 22px 0;
+         font-family: Bahnschrift, "Arial Narrow", Arial, sans-serif; font-stretch: 100%; font-weight: 400; }
+  h1, h2, h3, li b { font-stretch: 75%; font-weight: 700; line-height: 1; }
+  .tag { display: block; font-size: 12.5px; letter-spacing: 0.07em; color: var(--red); font-weight: 700; margin-bottom: 2px; }
+  .n { display: inline-block; min-width: 17px; height: 17px; line-height: 17px; border-radius: 9px; background: var(--red);
+       color: #fff; font-size: 12px; text-align: center; font-weight: 700; letter-spacing: 0; margin-right: 4px; padding: 0 3px; }
 
-  /* masthead */
-  .top { display: flex; justify-content: space-between; align-items: baseline; font-size: 16px;
-         letter-spacing: 0.14em; font-stretch: 100%; font-weight: 700; }
+  .top { display: flex; justify-content: space-between; align-items: baseline; font-size: 14px; letter-spacing: 0.12em; font-weight: 700; }
   .top .left { color: var(--red); }
-  .date { font-size: 82px; line-height: 0.95; letter-spacing: -0.005em; margin-top: 2px; }
-  .rules { border-top: 5px solid var(--rule); border-bottom: 1px solid var(--rule); height: 9px; margin: 8px 0 12px; }
+  .date { font-size: 80px; line-height: 0.95; font-stretch: 75%; font-weight: 700; margin-top: 1px; }
+  .rules { border-top: 4px solid var(--ink); border-bottom: 1px solid var(--ink); height: 7px; margin: 6px 0 10px; }
 
-  /* lead */
-  .lead { display: grid; grid-template-columns: 438px 1fr; gap: 20px; height: 262px; }
-  .lead img { width: 438px; height: 262px; object-fit: cover; display: block; }
-  .lead h1 { font-size: 50px; }
+  .rowA { display: grid; grid-template-columns: 642px 1fr; gap: 16px; height: 196px; }
+  .lead { display: grid; grid-template-columns: 250px 1fr; gap: 14px; }
+  .lead img { width: 250px; height: 196px; object-fit: cover; display: block; }
+  .lead h1 { font-size: 35px; }
+  .sub { font-size: 14.5px; line-height: 1.2; color: var(--muted); margin-top: 6px; }
+  .ukr { border-left: 1px solid var(--ink); padding-left: 16px; }
+  .ukr img { width: 100%; height: 104px; object-fit: cover; display: block; margin-bottom: 6px; }
+  .ukr h2 { font-size: 25px; }
 
-  .hr { border-top: 1px solid var(--rule); margin: 12px 0; }
+  .hr { border-top: 1px solid var(--ink); margin: 10px 0; }
 
-  /* second row */
-  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-  .row2 .ph { width: 100%; height: 112px; object-fit: cover; display: block; margin-bottom: 7px; }
-  .row2 h2 { font-size: 33px; }
-  .story { display: grid; grid-template-columns: 58px 1fr; gap: 12px; align-items: start; }
-  .story svg { width: 58px; height: 58px; }
-  .divide { border-left: 1px solid var(--rule); padding-left: 22px; }
+  .rowB { display: grid; grid-template-columns: repeat(6, 1fr); }
+  .rowB > div { padding: 0 9px; }
+  .rowB > div:first-child { padding-left: 0; }
+  .rowB > div:last-child { padding-right: 0; }
+  .rowB > div + div { border-left: 1px solid var(--ink); }
+  .rowB svg { width: 100%; height: 82px; display: block; margin-bottom: 5px; }
+  .rowB h3 { font-size: 18.5px; }
 
-  /* third row */
-  .row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
-  .row3 > div { padding: 0 16px; }
-  .row3 > div:first-child { padding-left: 0; }
-  .row3 > div + div { border-left: 1px solid var(--rule); }
-  .row3 h3 { font-size: 30px; }
-  .row3 .story { grid-template-columns: 46px 1fr; gap: 10px; }
-  .row3 .story svg { width: 46px; height: 46px; }
+  .rowC { display: grid; grid-template-columns: 352px 1fr; gap: 16px; }
+  .map svg { width: 352px; height: 143px; display: block; }
+  .maplegend { font-size: 11.5px; color: var(--muted); margin: 3px 0 8px; }
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-left: 1px solid var(--ink); }
+  .cols > div { padding: 0 11px; }
+  .cols > div + div { border-left: 1px solid var(--ink); }
+  .sec { font-size: 12.5px; letter-spacing: 0.07em; color: var(--red); font-weight: 700; border-bottom: 2px solid var(--ink);
+         padding-bottom: 2px; margin-bottom: 5px; }
+  .sec + ul { margin-bottom: 9px; }
+  ul { list-style: none; }
+  li { font-size: 16px; line-height: 1.08; margin-bottom: 6px; }
+  li b { font-size: 16.5px; }
 
-  /* fourth row */
-  .row4 { display: grid; grid-template-columns: repeat(4, 1fr); }
-  .row4 > div { padding: 0 13px; }
-  .row4 > div:first-child { padding-left: 0; }
-  .row4 > div + div { border-left: 1px solid var(--rule); }
-  .row4 svg { width: 40px; height: 40px; display: block; margin-bottom: 4px; }
-  .row4 h4 { font-size: 25px; }
-
-  .also { display: flex; gap: 14px; align-items: baseline; font-size: 21px; border-top: 3px solid var(--rule);
-          padding-top: 8px; margin-top: 12px; }
-  .also b { color: var(--red); letter-spacing: 0.08em; font-size: 15px; font-stretch: 100%; font-weight: 700; }
-  .also span { font-stretch: 87.5%; font-weight: 600; }
-  .also i { font-style: normal; color: var(--muted); }
-  .foot { font-size: 13px; color: var(--muted); margin-top: 7px; }
+  .foot { font-size: 11.5px; color: var(--muted); border-top: 3px solid var(--ink); padding-top: 5px; margin-top: 4px; }
 </style>
 </head>
 <body>
-  <div class="top"><span class="left">THE WORLD IN ONE DAY</span><span>WORLD NEWS SUMMARY</span></div>
-  <div class="date cond">THURSDAY 26 NOVEMBER 2026</div>
+  <div class="top"><span class="left">THE WORLD IN ONE DAY</span><span>35 STORIES · 6 CONTINENTS</span></div>
+  <div class="date">THURSDAY 26 NOVEMBER 2026</div>
   <div class="rules"></div>
 
-  <section class="lead">
-    <img src="img/port.jpg" alt="">
-    <div>
-      <span class="tag">TRADE · UNITED STATES</span>
-      <h1>US unveils new tariffs on China, the EU and 12 others</h1>
-      <p class="sub">The levies target trading partners Washington accuses of subsidising factories and excess industrial capacity.</p>
+  <section class="rowA">
+    <div class="lead">
+      <img src="img/port.jpg" alt="">
+      <div>
+        <span class="tag"><span class="n">1</span>TRADE · WASHINGTON</span>
+        <h1>US unveils new tariffs on 14 trade partners, from China and the EU to Japan, India and Brazil</h1>
+        <p class="sub">The EU says it ‘strongly rejects’ the move; Brazil says it ‘will not yield’.</p>
+      </div>
+    </div>
+    <div class="ukr">
+      <img src="img/airbase.jpg" alt="">
+      <span class="tag"><span class="n">2</span>WAR · RUSSIA</span>
+      <h2>Ukraine strikes Savasleyka air base, says five Russian jets hit</h2>
     </div>
   </section>
 
   <div class="hr"></div>
 
-  <section class="row2">
+  <section class="rowB">
     <div>
-      <img class="ph" src="img/airbase.jpg" alt="">
-      <span class="tag">WAR · RUSSIA</span>
-      <h2>Ukraine strikes Russian air base, says five jets hit</h2>
+      <svg viewBox="0 0 150 82" aria-hidden="true">
+        <rect width="150" height="82" fill="#dfe3df"/>
+        <path d="M96 52l14-13 12 6 10-9 18 5v11z" fill="#c9c2b2"/>
+        <rect y="52" width="150" height="30" fill="#8fa5ad"/>
+        <path d="M30 26c-8 0-12-7-6-12 2-7 12-8 16-3 7-3 14 2 11 9 4 5-2 10-8 8-4 3-10 2-13-2z" fill="#6b6e73"/>
+        <path d="M34 44c-3-6 2-9 0-15 6 4 9 8 7 13 3-2 4-5 3-8 5 5 5 9 2 12z" fill="#b42318"/>
+        <path d="M10 46h80l-9 13H18z" fill="#16181d"/>
+        <rect x="70" y="35" width="11" height="11" fill="#16181d"/>
+        <circle cx="122" cy="67" r="6" fill="#16181d"/>
+        <path d="M122 57v20M112 67h20M115 60l14 14M129 60l-14 14" stroke="#16181d" stroke-width="2"/>
+      </svg>
+      <span class="tag"><span class="n">3</span>IRAN WAR · HORMUZ</span>
+      <h3>Iran says mines hit two oil tankers and an LNG carrier</h3>
     </div>
-    <div class="divide">
-      <div class="story">
-        <svg viewBox="0 0 58 58" aria-hidden="true">
-          <!-- tanker on its side with flames -->
-          <path d="M18 8c4 6-2 9 3 15 2-4 6-5 5-11 6 5 8 12 3 18 4-1 6-4 6-7 4 6 2 12-3 15H16c-6-4-7-12-2-18 0 4 2 6 4 7-3-6 1-12 0-19z" fill="#b42318"/>
-          <rect x="4" y="40" width="34" height="11" rx="5.5" fill="none" stroke="#16181d" stroke-width="3"/>
-          <path d="M38 41h9l6 6v4H38z" fill="none" stroke="#16181d" stroke-width="3" stroke-linejoin="round"/>
-          <circle cx="13" cy="54" r="3" fill="#16181d"/><circle cx="46" cy="54" r="3" fill="#16181d"/>
-        </svg>
-        <div>
-          <span class="tag">EGYPT</span>
-          <h2>Fuel tanker fire on a Cairo highway kills at least 31</h2>
-          <p class="sub">21 more injured after the tanker overturned on the busy ring road.</p>
-        </div>
+    <div>
+      <svg viewBox="0 0 150 82" aria-hidden="true">
+        <rect width="150" height="82" fill="#e7ddc8"/>
+        <path d="M0 40h14v-9h8v9h10V24h3l2-8 2 8h3v16h14v-6a8 8 0 0 1 16 0v6h16v-12h10v12h22v-7h12v7h18v12H0z" fill="#b5ab97"/>
+        <path d="M0 58l150-10v34H0z" fill="#6b6e73"/>
+        <path d="M0 70l150-12" stroke="#f3efe6" stroke-width="2" stroke-dasharray="8 7"/>
+        <path d="M70 30c-4-8 4-12 1-20 9 6 12 13 8 20 5-2 7-6 6-11 7 7 7 15 1 20H70c-6-3-7-8-4-13 0 3 2 5 4 4z" fill="#b42318"/>
+        <rect x="52" y="48" width="44" height="15" rx="7.5" transform="rotate(-8 74 55)" fill="#16181d"/>
+        <path d="M98 44l12-2 6 8-2 7-15 2z" fill="#16181d"/>
+      </svg>
+      <span class="tag"><span class="n">4</span>EGYPT · CAIRO</span>
+      <h3>Fuel tanker fire on the ring road kills at least 31</h3>
+    </div>
+    <div>
+      <svg viewBox="0 0 150 82" aria-hidden="true">
+        <rect width="150" height="82" fill="#d9dde0"/>
+        <path d="M6 82V42h14v-8h10v48M34 82V30h8V18h4v12h8v52M58 82V46h16v36M80 82V36h12v46M96 82V26h6l3-10 3 10h6v56M118 82V44h14v38" fill="#8d939a"/>
+        <path d="M32 20a9 9 0 0 1 4-17 12 12 0 0 1 22 1 9 9 0 0 1 4 16z" fill="#6b6e73"/>
+        <path d="M36 25l-4 9M46 25l-4 9M56 25l-4 9" stroke="#16181d" stroke-width="2.4" stroke-linecap="round"/>
+        <rect x="98" y="4" width="44" height="34" fill="#f3efe6" stroke="#16181d" stroke-width="2"/>
+        <rect x="98" y="4" width="44" height="11" fill="#b42318"/>
+        <text x="120" y="13" font-size="9" font-weight="700" fill="#fff" text-anchor="middle" font-family="Bahnschrift, Arial">SAT</text>
+        <text x="120" y="34" font-size="18" font-weight="700" fill="#16181d" text-anchor="middle" font-family="Bahnschrift, Arial">28</text>
+        <circle cx="72" cy="60" r="10" fill="#b42318"/>
+        <path d="M72 70v12" stroke="#16181d" stroke-width="1.5"/>
+      </svg>
+      <span class="tag"><span class="n">5</span>US · NEW YORK</span>
+      <h3>Storms push Macy’s 100th Thanksgiving parade to Saturday</h3>
+    </div>
+    <div>
+      <svg viewBox="0 0 150 82" aria-hidden="true">
+        <rect width="150" height="82" fill="#e4e1d6"/>
+        <path d="M0 60l26-24 18 14 24-26 28 26 18-12 36 22v22H0z" fill="#a7a08f"/>
+        <path d="M74 64L104 10" stroke="#16181d" stroke-width="9" stroke-linecap="round"/>
+        <path d="M99 18l8-14 2 10z" fill="#b42318"/>
+        <rect x="38" y="62" width="62" height="10" fill="#16181d"/>
+        <circle cx="48" cy="76" r="5" fill="#16181d"/><circle cx="66" cy="76" r="5" fill="#16181d"/><circle cx="88" cy="76" r="5" fill="#16181d"/>
+      </svg>
+      <span class="tag"><span class="n">6</span>NORTH KOREA</span>
+      <h3>Kim urges wider deployment of tactical nuclear weapons</h3>
+    </div>
+    <div>
+      <svg viewBox="0 0 150 82" aria-hidden="true">
+        <rect width="150" height="82" fill="#e7e2d6"/>
+        <path d="M30 26L75 8l45 18z" fill="#16181d"/>
+        <rect x="30" y="27" width="90" height="5" fill="#16181d"/>
+        <path d="M38 34h7v34h-7zM56 34h7v34h-7zM74 34h7v34h-7zM92 34h7v34h-7zM108 34h7v34h-7z" fill="#8d939a"/>
+        <rect x="26" y="68" width="98" height="6" fill="#16181d"/>
+        <rect x="104" y="44" width="30" height="13" rx="2" transform="rotate(-30 119 50)" fill="#b42318"/>
+        <path d="M112 58l-12 20" stroke="#b42318" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <span class="tag"><span class="n">7</span>ISRAEL</span>
+      <h3>Judges urge dropping key charges against Netanyahu</h3>
+    </div>
+    <div>
+      <svg viewBox="0 0 150 82" aria-hidden="true">
+        <rect width="150" height="82" fill="#16181d"/>
+        <circle cx="20" cy="12" r="1" fill="#f3efe6"/><circle cx="130" cy="70" r="1" fill="#f3efe6"/><circle cx="140" cy="16" r="1" fill="#f3efe6"/><circle cx="8" cy="66" r="1" fill="#f3efe6"/>
+        <path d="M22 46c-2-16 12-28 28-26 15 2 22 14 19 28-3 15-17 22-31 19-10-2-15-10-16-21z" fill="#8d939a"/>
+        <path d="M88 56c0-8 7-13 14-12 8 1 12 8 10 15s-9 11-16 9c-5-2-8-6-8-12z" fill="#b5ab97"/>
+        <ellipse cx="100" cy="56" rx="6" ry="4" fill="#16181d" stroke="#b42318" stroke-width="2"/>
+        <rect x="114" y="18" width="8" height="8" fill="#f3efe6"/>
+        <rect x="102" y="20" width="10" height="4" fill="#b42318"/><rect x="124" y="20" width="10" height="4" fill="#b42318"/>
+      </svg>
+      <span class="tag"><span class="n">8</span>SPACE</span>
+      <h3>Hera probe images the crater NASA’s DART left on an asteroid</h3>
+    </div>
+  </section>
+
+  <div class="hr"></div>
+
+  <section class="rowC">
+    <div class="map">
+      <svg viewBox="48 2 290 118" aria-hidden="true">
+        <rect x="48" y="2" width="290" height="118" fill="#e9ece9"/>
+        <g fill="#aaa189">
+          <path d="M12 9L24 4 50 5 85 3 100 2 118 15 125 23 110 32 104 40 100 50 90 45 83 49 83 56 93 54 97 65 102 67 98 67 88 61 75 56 70 52 63 43 56 35 56 27 45 18 30 15 15 15z"/>
+          <path d="M130 0L160 0 158 5 138 15 128 11 122 0z"/>
+          <path d="M103 67L118 64 130 75 145 82 140 97 132 103 122 113 115 116 112 130 106 125 107 112 109 93 103 87 99 80 100 74z"/>
+          <path d="M171 38L171 32 179 29 176 27 182 24 188 21 190 18 192 21 200 20 204 15 210 5 240 5 260 2 290 0 320 3 360 7 360 10 340 15 337 24 320 20 315 21 320 27 310 33 309 40 306 38 302 35 298 37 302 45 300 51 290 55 288 63 285 66 281 62 283 74 278 67 278 59 272 54 268 53 260 60 257 67 253 58 249 53 242 50 237 49 239 53 232 59 223 62 215 47 213 44 215 39 210 39 206 35 203 38 200 35 198 35 196 37 192 31 188 31 183 32 179 38z"/>
+          <path d="M185 17L185 13 195 6 208 4 210 6 205 10 198 15 192 19z"/>
+          <path d="M175 25L181 24 178 19 175 17 174 20z"/>
+          <path d="M163 54L170 45 174 39 190 38 191 42 200 44 212 44 215 51 219 60 223 63 231 64 228 71 220 78 220 90 215 99 212 104 200 110 197 104 192 92 193 80 189 71 185 70 172 71 167 67 163 61z"/>
+          <path d="M224 100L227 100 230 90 228 88z"/>
+          <path d="M294 97L302 93 310 87 317 87 322 86 326 94 333 101 330 112 320 113 311 106 295 109 293 101z"/>
+          <path d="M310 44L315 41 320 39 322 32 325 31 321 34 319 38 313 42z"/>
+          <path d="M275 70L286 81 284 80 278 73z"/><path d="M285 81L294 83 294 82z"/>
+          <path d="M289 74L297 68 299 74 296 79 290 78z"/><path d="M311 76L321 78 330 85 321 84z"/>
+          <path d="M301 57L306 68 302 68z"/>
+          <path d="M227 44L231 43 236 46 239 49 237 52 232 51 228 48z" fill="#e9ece9"/>
+        </g>
+        <g stroke="#16181d" stroke-width="0.8" fill="none">
+          <path d="M103 36.1L97 44"/><path d="M106 34.3L110 26"/>
+          <path d="M211.2 45L203 54"/><path d="M215.2 43.2L218 33"/><path d="M236.3 48.4L242 57"/>
+        </g>
+        <g fill="#16181d">
+          <circle cx="122" cy="109.6" r="1.6"/><circle cx="87" cy="33" r="1.6"/><circle cx="180" cy="23.5" r="1.6"/>
+          <circle cx="193.4" cy="22.5" r="1.6"/><circle cx="214.5" cy="43.5" r="1.6"/><circle cx="186" cy="65" r="1.6"/>
+          <circle cx="183.4" cy="68.5" r="1.6"/><circle cx="214" cy="63" r="1.6"/><circle cx="219.7" cy="78.2" r="1.6"/>
+          <circle cx="294" cy="52.7" r="1.6"/><circle cx="252.8" cy="56" r="1.6"/><circle cx="286.8" cy="81.6" r="1.6"/>
+          <circle cx="296.4" cy="35.1" r="1.6"/><circle cx="186.1" cy="28.8" r="1.6"/><circle cx="247" cy="45" r="1.6"/><circle cx="220.7" cy="38.5" r="1.6"/><circle cx="81" cy="55.6" r="1.6"/><circle cx="331" cy="108.9" r="1.6"/>
+        </g>
+        <g font-family="Bahnschrift, Arial" font-weight="700" font-size="7" text-anchor="middle" fill="#fff">
+          <circle cx="97" cy="44" r="5" fill="#b42318"/><text x="97" y="46.5">1</text>
+          <circle cx="222.3" cy="19.6" r="5" fill="#b42318"/><text x="222.3" y="22.1">2</text>
+          <circle cx="242" cy="57" r="5" fill="#b42318"/><text x="242" y="59.5">3</text>
+          <circle cx="203" cy="54" r="5" fill="#b42318"/><text x="203" y="56.5">4</text>
+          <circle cx="110" cy="26" r="5" fill="#b42318"/><text x="110" y="28.5">5</text>
+          <circle cx="305.7" cy="36" r="5" fill="#b42318"/><text x="305.7" y="38.5">6</text>
+          <circle cx="218" cy="33" r="5" fill="#b42318"/><text x="218" y="35.5">7</text>
+        </g>
+      </svg>
+      <p class="maplegend">Red numbers: stories 1–7 above. Dots: the stories listed by region.</p>
+      <div class="sec">MARKETS &amp; TECH</div>
+      <ul>
+        <li><b>US regulator clears SpaceX for up to 1 million data satellites</b></li>
+        <li><b>AI fears hit Wall Street; Nasdaq and S&amp;P 500 close lower</b></li>
+        <li><b>Bitcoin slides below $60,000</b></li>
+      </ul>
+      <div class="sec">SPORT &amp; CULTURE</div>
+      <ul>
+        <li><b>Chess world title: Gukesh and Sindarov draw game 2 in 20 moves</b></li>
+        <li><b>Duran Duran guitarist Andy Taylor dies at 65</b></li>
+        <li><b>Pitt and Jolie settle their French winery fight</b></li>
+      </ul>
+    </div>
+    <div class="cols">
+      <div>
+        <div class="sec">AMERICAS</div>
+        <ul>
+          <li><b>Thanksgiving storms flood coasts from California to Florida</b></li>
+          <li><b>Argentina slips into recession, testing Milei</b></li>
+          <li><b>US Army detonates Iowa bomb chemicals; no toxic plume</b></li>
+          <li><b>Mexico protests as US deports a wanted TV host to Spain</b></li>
+        </ul>
+        <div class="sec">EUROPE</div>
+        <ul>
+          <li><b>UK: Poundland collapses, 11,000 jobs at risk</b></li>
+          <li><b>Germany’s Merz: ‘Russia wants more than Ukraine’</b></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sec">MIDDLE EAST &amp; AFRICA</div>
+        <ul>
+          <li><b>Israeli strike kills senior Hamas official and family in Gaza City</b></li>
+          <li><b>Gaza journalist killed by Israel wins Rory Peck prize</b></li>
+          <li><b>Syria: Islamic State attack kills two security officers</b></li>
+          <li><b>Nigeria: suspected militants kill at least 30 in Niger State</b></li>
+          <li><b>Nigeria seizes $220m of meth, arrests five Mexicans</b></li>
+          <li><b>Sudan: drone strikes kill at least 14 civilians</b></li>
+          <li><b>Kenya: cult leader Paul Mackenzie convicted again</b></li>
+          <li><b>Nollywood star Pete Edochie dies at 79</b></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sec">ASIA-PACIFIC</div>
+        <ul>
+          <li><b>Hong Kong marks a year since the Tai Po fire killed 168</b></li>
+          <li><b>India remembers the 26/11 Mumbai attacks, 18 years on</b></li>
+          <li><b>Indonesia: 9 dead, 17 trapped as illegal gold mine floods</b></li>
+          <li><b>China: Xi’s purge topples a rising party star</b></li>
+          <li><b>Pakistan: man on moving motorbike catches cricket ball</b></li>
+          <li><b>South Korea: rail union starts work-to-rule; delays feared</b></li>
+          <li><b>Australia: data centres drive biggest investment jump since mining boom</b></li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <div class="hr"></div>
-
-  <section class="row3">
-    <div class="story">
-      <svg viewBox="0 0 46 46" aria-hidden="true">
-        <!-- missile on launcher -->
-        <path d="M23 3c5 5 6 11 6 17v14h-12V20c0-6 1-12 6-17z" fill="none" stroke="#16181d" stroke-width="3" stroke-linejoin="round"/>
-        <path d="M17 28l-6 7h6M29 28l6 7h-6" fill="none" stroke="#16181d" stroke-width="3" stroke-linejoin="round"/>
-        <path d="M18 38h10l-5 7z" fill="#b42318"/>
-      </svg>
-      <div><span class="tag">NORTH KOREA</span><h3>Kim urges wider tactical nuclear deployment</h3></div>
-    </div>
-    <div class="story">
-      <svg viewBox="0 0 46 46" aria-hidden="true">
-        <!-- gavel -->
-        <rect x="14" y="5" width="22" height="11" rx="2" transform="rotate(35 25 10.5)" fill="#16181d"/>
-        <path d="M21 17L8 36" stroke="#16181d" stroke-width="4" stroke-linecap="round"/>
-        <rect x="22" y="38" width="20" height="5" fill="#b42318"/>
-      </svg>
-      <div><span class="tag">ISRAEL</span><h3>Judges urge dropping key Netanyahu charges</h3></div>
-    </div>
-    <div class="story">
-      <svg viewBox="0 0 46 46" aria-hidden="true">
-        <!-- memorial candle -->
-        <path d="M23 3c4 5 5 8 2 12h-4c-3-4-2-7 2-12z" fill="#b42318"/>
-        <rect x="16" y="18" width="14" height="22" fill="none" stroke="#16181d" stroke-width="3"/>
-        <path d="M9 43h28" stroke="#16181d" stroke-width="3"/>
-      </svg>
-      <div><span class="tag">HONG KONG</span><h3>A year on, city mourns 168 killed in Tai Po fire</h3></div>
-    </div>
-  </section>
-
-  <div class="hr"></div>
-
-  <section class="row4">
-    <div>
-      <svg viewBox="0 0 40 40" aria-hidden="true">
-        <path d="M8 21c-1-8 6-15 14-14 8 0 12 7 11 14-1 8-8 13-15 12-6-1-10-6-10-12z" fill="none" stroke="#16181d" stroke-width="3"/>
-        <ellipse cx="22" cy="20" rx="6" ry="4.5" fill="#b42318"/>
-      </svg>
-      <span class="tag">SPACE</span><h4>Hera probe images crater left by NASA's DART impact</h4>
-    </div>
-    <div>
-      <svg viewBox="0 0 40 40" aria-hidden="true">
-        <rect x="15" y="15" width="10" height="10" fill="#16181d"/>
-        <rect x="2" y="16" width="11" height="8" fill="none" stroke="#16181d" stroke-width="2.5"/>
-        <rect x="27" y="16" width="11" height="8" fill="none" stroke="#16181d" stroke-width="2.5"/>
-        <path d="M20 15V7M15 4c3 3 7 3 10 0" stroke="#b42318" stroke-width="2.5" fill="none"/>
-      </svg>
-      <span class="tag">TECH</span><h4>US regulator clears SpaceX for 1 million data satellites</h4>
-    </div>
-    <div>
-      <svg viewBox="0 0 40 40" aria-hidden="true">
-        <path d="M4 4v32h32" stroke="#16181d" stroke-width="3" fill="none"/>
-        <path d="M8 10l8 9 6-4 12 15" stroke="#b42318" stroke-width="3.5" fill="none" stroke-linejoin="round"/>
-        <path d="M27 30h7v-7" stroke="#b42318" stroke-width="3.5" fill="none"/>
-      </svg>
-      <span class="tag">MARKETS</span><h4>AI fears hit Wall Street; Nasdaq and S&amp;P 500 close lower</h4>
-    </div>
-    <div>
-      <svg viewBox="0 0 40 40" aria-hidden="true">
-        <path d="M9 22a7 7 0 0 1 3-13 9 9 0 0 1 17 2 6 6 0 0 1 1 11z" fill="none" stroke="#16181d" stroke-width="3" stroke-linejoin="round"/>
-        <path d="M12 27l-3 7M20 27l-3 7M28 27l-3 7" stroke="#b42318" stroke-width="3" stroke-linecap="round"/>
-      </svg>
-      <span class="tag">UNITED STATES</span><h4>Storms push Macy's 100th Thanksgiving parade to Saturday</h4>
-    </div>
-  </section>
-
-  <div class="also">
-    <b>ALSO</b>
-    <span>UK: Poundland collapses, 11,000 jobs at risk</span><i>·</i>
-    <span>Duran Duran guitarist Andy Taylor dies at 65</span>
-  </div>
-  <p class="foot">Events that happened or were first reported on 26 November 2026, in any time zone. Photos are AI-made illustrations.</p>
+  <p class="foot">Every story happened or was first reported on 26 November 2026 in at least one time zone and was checked against two or more news outlets. Photos are AI-made illustrations.</p>
 </body>
 </html>

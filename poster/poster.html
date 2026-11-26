@@ -4,264 +4,463 @@
 <meta charset="utf-8">
 <title>Thursday 26 November 2026</title>
 <style>
-  :root { --paper: #f3efe6; --ink: #16181d; --muted: #4c5058; --red: #b42318; --sea: #dfe3df; --land: #c9c2b2; }
+  :root { --paper: #f4f0e6; --ink: #15171c; --muted: #4a4e56; --red: #b42318; --line: #15171c;
+          --conf: #2c6a3a; --off: #1d3a6e; --rep: #6a4a86; --sch: #8a6512; --claim: #9a3412; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 1024px; height: 1024px; overflow: hidden; }
-  body { background: var(--paper); color: var(--ink); padding: 16px 22px 0;
-         font-family: Bahnschrift, "Arial Narrow", Arial, sans-serif; font-stretch: 100%; font-weight: 400; }
-  h1, h2, h3, li b { font-stretch: 75%; font-weight: 700; line-height: 1; }
-  .tag { display: block; font-size: 12.5px; letter-spacing: 0.07em; color: var(--red); font-weight: 700; margin-bottom: 2px; }
+  body { background: var(--paper); color: var(--ink); padding: 12px 20px 0;
+         font-family: Bahnschrift, "Arial Narrow", Arial, sans-serif; font-weight: 400; }
+  b, h1, h2, h3 { font-stretch: 75%; font-weight: 700; }
+  svg { display: block; }
+
+  .top { display: flex; justify-content: space-between; font-size: 13px; letter-spacing: 0.12em; font-weight: 700; }
+  .top .l { color: var(--red); }
+  .date { font-size: 72px; line-height: 0.92; font-stretch: 75%; font-weight: 700; letter-spacing: -0.5px; margin-top: 2px; }
+  .deck { font-size: 15.5px; color: var(--muted); margin-top: 3px; }
+  .rule { border-top: 4px solid var(--line); border-bottom: 1px solid var(--line); height: 7px; margin: 6px 0 8px; }
+
+  .kick { display: flex; align-items: center; gap: 5px; font-size: 11.5px; letter-spacing: 0.06em; font-weight: 700; color: var(--red); margin: 5px 0 2px; }
   .n { display: inline-block; min-width: 17px; height: 17px; line-height: 17px; border-radius: 9px; background: var(--red);
-       color: #fff; font-size: 12px; text-align: center; font-weight: 700; letter-spacing: 0; margin-right: 4px; padding: 0 3px; }
+       color: #fff; font-size: 11.5px; text-align: center; letter-spacing: 0; padding: 0 3px; }
+  .badge { display: inline-block; font-size: 10px; letter-spacing: 0.06em; font-weight: 700; color: #fff; padding: 1px 5px 0; border-radius: 2px; }
+  .CONFIRMED { background: var(--conf); } .OFFICIAL { background: var(--off); } .REPORTED { background: var(--rep); }
+  .SCHEDULED { background: var(--sch); } .STATE { background: var(--claim); }
+  .src { font-size: 10.5px; color: var(--muted); letter-spacing: 0.02em; margin-left: 4px; }
+  .meta { margin-top: 4px; white-space: nowrap; overflow: hidden; }
 
-  .top { display: flex; justify-content: space-between; align-items: baseline; font-size: 14px; letter-spacing: 0.12em; font-weight: 700; }
-  .top .left { color: var(--red); }
-  .date { font-size: 80px; line-height: 0.95; font-stretch: 75%; font-weight: 700; margin-top: 1px; }
-  .rules { border-top: 4px solid var(--ink); border-bottom: 1px solid var(--ink); height: 7px; margin: 6px 0 10px; }
+  .leads { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .leads h1 { font-size: 23.5px; line-height: 1.0; }
+  .leads p { font-size: 12.5px; line-height: 1.2; color: var(--muted); margin-top: 3px; }
 
-  .rowA { display: grid; grid-template-columns: 642px 1fr; gap: 16px; height: 196px; }
-  .lead { display: grid; grid-template-columns: 250px 1fr; gap: 14px; }
-  .lead img { width: 250px; height: 196px; object-fit: cover; display: block; }
-  .lead h1 { font-size: 35px; }
-  .sub { font-size: 14.5px; line-height: 1.2; color: var(--muted); margin-top: 6px; }
-  .ukr { border-left: 1px solid var(--ink); padding-left: 16px; }
-  .ukr img { width: 100%; height: 104px; object-fit: cover; display: block; margin-bottom: 6px; }
-  .ukr h2 { font-size: 25px; }
+  .hr { border-top: 1px solid var(--line); margin: 8px 0 6px; }
 
-  .hr { border-top: 1px solid var(--ink); margin: 10px 0; }
+  .cards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 10px; row-gap: 8px; }
+  .cards h3 { font-size: 15.5px; line-height: 1.02; height: 32px; }
+  .cards .kick { font-size: 10.5px; margin-top: 3px; }
+  .cards .n { min-width: 15px; height: 15px; line-height: 15px; font-size: 10.5px; }
 
-  .rowB { display: grid; grid-template-columns: repeat(6, 1fr); }
-  .rowB > div { padding: 0 9px; }
-  .rowB > div:first-child { padding-left: 0; }
-  .rowB > div:last-child { padding-right: 0; }
-  .rowB > div + div { border-left: 1px solid var(--ink); }
-  .rowB svg { width: 100%; height: 82px; display: block; margin-bottom: 5px; }
-  .rowB h3 { font-size: 18.5px; }
+  .bottom { display: grid; grid-template-columns: 328px minmax(0, 1fr); gap: 14px; }
+  .sec { font-size: 11.5px; letter-spacing: 0.08em; color: var(--red); font-weight: 700; border-bottom: 2px solid var(--line);
+         padding-bottom: 2px; margin-bottom: 4px; }
+  .map { border: 1px solid #b9b3a5; }
+  .utc { display: flex; gap: 12px; align-items: baseline; font-size: 12px; margin-top: 7px; padding: 4px 8px; background: #e4ddcd; white-space: nowrap; }
+  .utc b { color: var(--off); font-size: 12.5px; }
+  .utc .h { color: var(--red); letter-spacing: 0.08em; font-size: 11.5px; }
+  .also { columns: 2; column-gap: 14px; list-style: none; }
+  .also li { font-size: 12.5px; line-height: 1.12; margin-bottom: 3.2px; white-space: nowrap; overflow: hidden; font-stretch: 80%; }
+  .also li i { font-style: normal; color: var(--red); font-weight: 700; font-size: 10.5px; margin-right: 3px; display: inline-block; width: 13px; }
+  .also li b { font-size: 12.5px; }
+  .also li span { color: var(--muted); font-size: 10.5px; }
 
-  .rowC { display: grid; grid-template-columns: 352px 1fr; gap: 16px; }
-  .map svg { width: 352px; height: 143px; display: block; }
-  .maplegend { font-size: 11.5px; color: var(--muted); margin: 3px 0 8px; }
-  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-left: 1px solid var(--ink); }
-  .cols > div { padding: 0 11px; }
-  .cols > div + div { border-left: 1px solid var(--ink); }
-  .sec { font-size: 12.5px; letter-spacing: 0.07em; color: var(--red); font-weight: 700; border-bottom: 2px solid var(--ink);
-         padding-bottom: 2px; margin-bottom: 5px; }
-  .sec + ul { margin-bottom: 9px; }
-  ul { list-style: none; }
-  li { font-size: 16px; line-height: 1.08; margin-bottom: 6px; }
-  li b { font-size: 16.5px; }
-
-  .foot { font-size: 11.5px; color: var(--muted); border-top: 3px solid var(--ink); padding-top: 5px; margin-top: 4px; }
+  .check { border: 2px solid var(--red); padding: 4px 8px 5px; margin-top: 7px; font-size: 11.5px; line-height: 1.22; }
+  .check b { color: var(--red); font-size: 12px; letter-spacing: 0.04em; }
+  .foot { font-size: 10.5px; color: var(--muted); margin-top: 5px; display: flex; justify-content: space-between; }
 </style>
 </head>
 <body>
-  <div class="top"><span class="left">THE WORLD IN ONE DAY</span><span>35 STORIES · 6 CONTINENTS</span></div>
+  <div class="top"><span class="l">THE WORLD IN ONE DAY</span><span>30 STORIES · 8 REGIONS · ALL OF THEM 26 NOVEMBER</span></div>
   <div class="date">THURSDAY 26 NOVEMBER 2026</div>
-  <div class="rules"></div>
+  <div class="deck">A storm grounds New York's 100th Thanksgiving parade, Kim Jong Un pushes tactical nukes, and EU leaders meet on money for Ukraine.</div>
+  <div class="rule"></div>
 
-  <section class="rowA">
-    <div class="lead">
-      <img src="img/port.jpg" alt="">
-      <div>
-        <span class="tag"><span class="n">1</span>TRADE · WASHINGTON</span>
-        <h1>US unveils new tariffs on 14 trade partners, from China and the EU to Japan, India and Brazil</h1>
-        <p class="sub">The EU says it ‘strongly rejects’ the move; Brazil says it ‘will not yield’.</p>
-      </div>
-    </div>
-    <div class="ukr">
-      <img src="img/airbase.jpg" alt="">
-      <span class="tag"><span class="n">2</span>WAR · RUSSIA</span>
-      <h2>Ukraine strikes Savasleyka air base, says five Russian jets hit</h2>
-    </div>
+  <section class="leads">
+    <article>
+      <svg viewBox="0 0 318 138" preserveAspectRatio="xMidYMid slice" width="100%" height="120" aria-label="Rain over a New York skyline; a red parade balloon lies tied down on the street">
+        <rect width="318" height="138" fill="#2c3442"/>
+        <path d="M0 0h318v20c-18 7-36-2-54 4-20-9-42 3-62-3-20 8-42-2-62 4-22-8-42 4-64-2-22 6-38-2-76 5z" fill="#222936"/>
+        <g fill="#1a202b">
+          <rect x="0" y="62" width="24" height="50"/><rect x="26" y="48" width="18" height="64"/><rect x="46" y="70" width="28" height="42"/>
+          <rect x="76" y="34" width="18" height="78"/><rect x="80" y="22" width="10" height="14"/><rect x="84" y="8" width="2" height="16"/>
+          <rect x="96" y="56" width="26" height="56"/><rect x="124" y="74" width="20" height="38"/><rect x="146" y="44" width="22" height="68"/>
+          <rect x="170" y="64" width="30" height="48"/><rect x="202" y="38" width="16" height="74"/><rect x="220" y="60" width="26" height="52"/>
+          <rect x="248" y="50" width="20" height="62"/><rect x="270" y="70" width="24" height="42"/><rect x="296" y="56" width="22" height="56"/>
+        </g>
+        <g fill="#e8c35a" opacity="0.8">
+          <rect x="6" y="70" width="3" height="4"/><rect x="14" y="82" width="3" height="4"/><rect x="31" y="58" width="3" height="4"/>
+          <rect x="37" y="74" width="3" height="4"/><rect x="52" y="78" width="3" height="4"/><rect x="62" y="90" width="3" height="4"/>
+          <rect x="81" y="46" width="3" height="4"/><rect x="88" y="62" width="3" height="4"/><rect x="102" y="66" width="3" height="4"/>
+          <rect x="112" y="80" width="3" height="4"/><rect x="151" y="54" width="3" height="4"/><rect x="159" y="70" width="3" height="4"/>
+          <rect x="207" y="48" width="3" height="4"/><rect x="226" y="72" width="3" height="4"/><rect x="254" y="60" width="3" height="4"/>
+          <rect x="262" y="78" width="3" height="4"/><rect x="301" y="66" width="3" height="4"/><rect x="309" y="84" width="3" height="4"/>
+        </g>
+        <rect y="110" width="318" height="28" fill="#3b414b"/>
+        <path d="M0 126h318" stroke="#d9d4c7" stroke-width="2" stroke-dasharray="12 10"/>
+        <g transform="rotate(-6 196 104)">
+          <ellipse cx="196" cy="104" rx="54" ry="17" fill="#c0392b"/>
+          <ellipse cx="180" cy="98" rx="20" ry="5" fill="#e06a5c" opacity="0.7"/>
+          <text x="196" y="110" font-family="Bahnschrift, Arial" font-weight="700" font-size="17" fill="#fff" text-anchor="middle">100</text>
+        </g>
+        <g stroke="#e9e4d8" stroke-width="1.2"><path d="M150 106l-12 22M170 118l-4 12M222 117l6 13M246 103l14 24"/></g>
+        <g fill="#e9e4d8"><circle cx="138" cy="128" r="2.5"/><circle cx="166" cy="130" r="2.5"/><circle cx="228" cy="130" r="2.5"/><circle cx="260" cy="127" r="2.5"/></g>
+        <g stroke="#a9b8cc" stroke-width="1.2" opacity="0.55">
+          <path d="M14 6l-10 24M44 14l-10 24M70 4l-10 24M104 18l-10 24M132 6l-10 24M166 20l-10 24M196 8l-10 24M228 22l-10 24M262 6l-10 24M292 16l-10 24
+                   M24 52l-10 24M60 40l-10 24M118 46l-10 24M180 44l-10 24M240 40l-10 24M300 48l-10 24M88 80l-8 20M146 84l-8 20M282 84l-8 20"/>
+        </g>
+        <path d="M118 30c18-8 34 2 52-4M128 40c14-5 26 1 40-3" stroke="#e9e4d8" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8"/>
+        <g transform="translate(226 12)">
+          <rect width="84" height="38" rx="3" fill="#f4f0e6"/><rect width="84" height="11" rx="2" fill="#b42318"/>
+          <text x="42" y="8.5" font-family="Bahnschrift, Arial" font-weight="700" font-size="7.5" fill="#fff" text-anchor="middle">PARADE DAY</text>
+          <text x="18" y="30" font-family="Bahnschrift, Arial" font-weight="700" font-size="11" fill="#15171c" text-anchor="middle">THU 26</text>
+          <path d="M5 20l26 14" stroke="#b42318" stroke-width="2"/>
+          <path d="M37 26h8M42 23l3 3-3 3" stroke="#15171c" stroke-width="1.3" fill="none"/>
+          <text x="64" y="30" font-family="Bahnschrift, Arial" font-weight="700" font-size="11" fill="#b42318" text-anchor="middle">SAT 28</text>
+        </g>
+      </svg>
+      <div class="kick"><span class="n">1</span>USA · NEW YORK · THANKSGIVING</div>
+      <h1>Storm grounds Macy's 100th Thanksgiving parade</h1>
+      <p>The first weather postponement in its history: the parade moves to Saturday as storms threaten 250 million Americans.</p>
+      <div class="meta"><span class="badge CONFIRMED">CONFIRMED</span><span class="src">AP · NBC NEWS · FOX WEATHER</span></div>
+    </article>
+
+    <article>
+      <svg viewBox="0 0 318 138" preserveAspectRatio="xMidYMid slice" width="100%" height="120" aria-label="A missile on a launcher truck beside a nuclear plant at night">
+        <rect width="318" height="138" fill="#20252e"/>
+        <g fill="#cfd3da"><circle cx="30" cy="20" r="1"/><circle cx="96" cy="12" r="1"/><circle cx="150" cy="26" r="1"/><circle cx="210" cy="10" r="1"/><circle cx="276" cy="18" r="1"/><circle cx="130" cy="8" r="0.8"/></g>
+        <path d="M0 96l40-26 30 14 40-30 44 30 30-12 46 24 36-20 52 28v34H0z" fill="#2e343e"/>
+        <rect y="112" width="318" height="26" fill="#4a4a3c"/>
+        <g transform="translate(8 14)">
+          <rect width="44" height="26" fill="#024fa2"/><rect y="5" width="44" height="16" fill="#fff"/><rect y="6.5" width="44" height="13" fill="#ed1c27"/>
+          <circle cx="15" cy="13" r="5.2" fill="#fff"/>
+          <path d="M15 8.4l1.3 3.6h3.7l-3 2.3 1.1 3.7-3.1-2.2-3.1 2.2 1.1-3.7-3-2.3h3.7z" fill="#ed1c27"/>
+        </g>
+        <path d="M70 100L176 30l10 10L82 108z" fill="#d9d6cc"/>
+        <path d="M176 30l16-14-6 24z" fill="#b42318"/>
+        <path d="M96 92l-6-8M118 78l-6-8" stroke="#15171c" stroke-width="2"/>
+        <path d="M84 104l28 -8" stroke="#3d4a2f" stroke-width="5"/>
+        <rect x="56" y="98" width="150" height="14" fill="#4d5a3b"/>
+        <path d="M206 112V90h18l8 10v12z" fill="#4d5a3b"/><rect x="212" y="93" width="9" height="7" fill="#9fb3c8"/>
+        <g fill="#111"><circle cx="72" cy="114" r="7"/><circle cx="92" cy="114" r="7"/><circle cx="112" cy="114" r="7"/>
+          <circle cx="160" cy="114" r="7"/><circle cx="180" cy="114" r="7"/><circle cx="220" cy="114" r="7"/></g>
+        <g fill="#5d6470">
+          <rect x="246" y="70" width="64" height="42"/><rect x="254" y="46" width="10" height="26"/>
+          <path d="M276 72c2-14 2-22-2-30h26c-4 8-4 16-2 30z"/>
+        </g>
+        <circle cx="282" cy="92" r="10" fill="#f2c230"/>
+        <g fill="#15171c"><circle cx="282" cy="92" r="2"/>
+          <path d="M282 92l-4.5-7.8a9 9 0 0 1 9 0z"/><path d="M282 92l9 0a9 9 0 0 1-4.5 7.8z"/><path d="M282 92l-4.5 7.8a9 9 0 0 1-4.5-7.8z"/></g>
+      </svg>
+      <div class="kick"><span class="n">2</span>NORTH KOREA · PYONGYANG</div>
+      <h1>Kim calls for wider use of tactical nuclear weapons</h1>
+      <p>Touring nuclear-material plants, he says output is being "systematically expanded", state media KCNA reports.</p>
+      <div class="meta"><span class="badge STATE">STATE MEDIA</span><span class="src">KCNA VIA REUTERS · YONHAP</span></div>
+    </article>
+
+    <article>
+      <svg viewBox="0 0 318 138" preserveAspectRatio="xMidYMid slice" width="100%" height="120" aria-label="EU summit table seen from above, ringed by twelve gold stars">
+        <rect width="318" height="138" fill="#163a7a"/>
+        <g fill="#f2c230">
+          <path id="star" d="M0-6l1.8 3.9 4.2 0.5-3.1 2.9 0.8 4.2L0 3.4l-3.7 2.1 0.8-4.2-3.1-2.9 4.2-0.5z" transform="translate(159 7)"/>
+          <use href="#star" transform="translate(70 8.3)"/><use href="#star" transform="translate(121.2 31)"/>
+          <use href="#star" transform="translate(140 62)"/><use href="#star" transform="translate(121.2 93)"/>
+          <use href="#star" transform="translate(70 115.7)"/><use href="#star" transform="translate(0 124)"/>
+          <use href="#star" transform="translate(-70 115.7)"/><use href="#star" transform="translate(-121.2 93)"/>
+          <use href="#star" transform="translate(-140 62)"/><use href="#star" transform="translate(-121.2 31)"/>
+          <use href="#star" transform="translate(-70 8.3)"/>
+        </g>
+        <g fill="#e8e1d0"><circle cx="265.0" cy="69.0" r="4"/><circle cx="262.1" cy="79.8" r="4"/><circle cx="253.7" cy="90.1" r="4"/><circle cx="240.2" cy="99.2" r="4"/><circle cx="222.3" cy="106.7" r="4"/><circle cx="201.0" cy="112.2" r="4"/><circle cx="177.4" cy="115.3" r="4"/><circle cx="152.8" cy="115.9" r="4"/><circle cx="128.6" cy="114.0" r="4"/><circle cx="106.0" cy="109.7" r="4"/><circle cx="86.3" cy="103.2" r="4"/><circle cx="70.4" cy="94.8" r="4"/><circle cx="59.4" cy="85.1" r="4"/><circle cx="53.7" cy="74.5" r="4"/>
+          <circle cx="53.7" cy="63.5" r="4"/><circle cx="59.4" cy="52.9" r="4"/><circle cx="70.4" cy="43.2" r="4"/><circle cx="86.3" cy="34.8" r="4"/><circle cx="106.0" cy="28.3" r="4"/><circle cx="128.6" cy="24.0" r="4"/><circle cx="152.8" cy="22.1" r="4"/><circle cx="177.4" cy="22.7" r="4"/><circle cx="201.0" cy="25.8" r="4"/><circle cx="222.3" cy="31.3" r="4"/><circle cx="240.2" cy="38.8" r="4"/><circle cx="253.7" cy="47.9" r="4"/><circle cx="262.1" cy="58.2" r="4"/></g>
+        <ellipse cx="159" cy="69" rx="92" ry="36" fill="#b88a5a" stroke="#8b6340" stroke-width="3"/>
+        <g transform="translate(112 52)">
+          <rect width="46" height="34" fill="#fbf8f1"/><path d="M6 8h34M6 14h34M6 20h26" stroke="#9aa0a8" stroke-width="1.5"/>
+          <text x="23" y="31" font-family="Bahnschrift, Arial" font-weight="700" font-size="8.5" fill="#163a7a" text-anchor="middle">2028–34</text>
+        </g>
+        <circle cx="186" cy="64" r="11" fill="#f2c230" stroke="#c99a12" stroke-width="2"/>
+        <text x="186" y="69" font-family="Bahnschrift, Arial" font-weight="700" font-size="13" fill="#7a5a06" text-anchor="middle">€</text>
+        <rect x="203" y="70" width="18" height="6" fill="#0057b7"/><rect x="203" y="76" width="18" height="6" fill="#ffd700"/>
+        <path d="M203 70v18" stroke="#3a2a1a" stroke-width="1.5"/>
+        <text x="216" y="98" font-family="Bahnschrift, Arial" font-weight="700" font-size="9" fill="#fff" text-anchor="middle">€70bn</text>
+      </svg>
+      <div class="kick"><span class="n">3</span>EUROPE · BRUSSELS</div>
+      <h1>EU leaders meet on the budget and Ukraine's €70bn gap</h1>
+      <p>A two-day special summit takes up the 2028–34 budget, Ukraine's unfunded needs for 2027 and the European Central Bank's next leadership.</p>
+      <div class="meta"><span class="badge SCHEDULED">SCHEDULED</span><span class="src">COUNCIL OF THE EU · REUTERS</span></div>
+    </article>
   </section>
 
   <div class="hr"></div>
 
-  <section class="rowB">
-    <div>
-      <svg viewBox="0 0 150 82" aria-hidden="true">
-        <rect width="150" height="82" fill="#dfe3df"/>
-        <path d="M96 52l14-13 12 6 10-9 18 5v11z" fill="#c9c2b2"/>
-        <rect y="52" width="150" height="30" fill="#8fa5ad"/>
-        <path d="M30 26c-8 0-12-7-6-12 2-7 12-8 16-3 7-3 14 2 11 9 4 5-2 10-8 8-4 3-10 2-13-2z" fill="#6b6e73"/>
-        <path d="M34 44c-3-6 2-9 0-15 6 4 9 8 7 13 3-2 4-5 3-8 5 5 5 9 2 12z" fill="#b42318"/>
-        <path d="M10 46h80l-9 13H18z" fill="#16181d"/>
-        <rect x="70" y="35" width="11" height="11" fill="#16181d"/>
-        <circle cx="122" cy="67" r="6" fill="#16181d"/>
-        <path d="M122 57v20M112 67h20M115 60l14 14M129 60l-14 14" stroke="#16181d" stroke-width="2"/>
+  <section class="cards">
+    <article>
+      <svg viewBox="0 0 188 66" preserveAspectRatio="xMidYMid slice" width="100%" height="60" aria-label="Central bank building and a rising red arrow">
+        <rect width="188" height="66" fill="#e7e2d5"/>
+        <path d="M10 22L46 8l36 14z" fill="#6b717a"/><rect x="12" y="22" width="68" height="4" fill="#6b717a"/>
+        <g fill="#8d939a"><rect x="16" y="28" width="6" height="28"/><rect x="29" y="28" width="6" height="28"/><rect x="42" y="28" width="6" height="28"/><rect x="55" y="28" width="6" height="28"/><rect x="68" y="28" width="6" height="28"/></g>
+        <rect x="10" y="56" width="72" height="5" fill="#6b717a"/>
+        <path d="M92 58l22-14 14 6 36-30" stroke="#b42318" stroke-width="4" fill="none" stroke-linejoin="round"/>
+        <path d="M156 16l14-4-4 14z" fill="#b42318"/>
+        <text x="96" y="26" font-family="Bahnschrift, Arial" font-weight="700" font-size="19" fill="#1d3a6e">3.25%</text>
       </svg>
-      <span class="tag"><span class="n">3</span>IRAN WAR · HORMUZ</span>
-      <h3>Iran says mines hit two oil tankers and an LNG carrier</h3>
-    </div>
-    <div>
-      <svg viewBox="0 0 150 82" aria-hidden="true">
-        <rect width="150" height="82" fill="#e7ddc8"/>
-        <path d="M0 40h14v-9h8v9h10V24h3l2-8 2 8h3v16h14v-6a8 8 0 0 1 16 0v6h16v-12h10v12h22v-7h12v7h18v12H0z" fill="#b5ab97"/>
-        <path d="M0 58l150-10v34H0z" fill="#6b6e73"/>
-        <path d="M0 70l150-12" stroke="#f3efe6" stroke-width="2" stroke-dasharray="8 7"/>
-        <path d="M70 30c-4-8 4-12 1-20 9 6 12 13 8 20 5-2 7-6 6-11 7 7 7 15 1 20H70c-6-3-7-8-4-13 0 3 2 5 4 4z" fill="#b42318"/>
-        <rect x="52" y="48" width="44" height="15" rx="7.5" transform="rotate(-8 74 55)" fill="#16181d"/>
-        <path d="M98 44l12-2 6 8-2 7-15 2z" fill="#16181d"/>
+      <div class="kick"><span class="n">4</span>SOUTH KOREA · SEOUL</div>
+      <h3>Bank of Korea raises rates to 3.25%, highest in two years</h3>
+      <div class="meta"><span class="badge OFFICIAL">OFFICIAL</span><span class="src">BANK OF KOREA · CNBC</span></div>
+    </article>
+
+    <article>
+      <svg viewBox="0 0 188 66" preserveAspectRatio="xMidYMid slice" width="100%" height="60" aria-label="Seven tower blocks at dusk with white flowers and candles in front">
+        <rect width="188" height="66" fill="#3b3442"/>
+        <g fill="#5a5262">
+          <rect x="8" y="10" width="18" height="46"/><rect x="30" y="6" width="18" height="50"/><rect x="52" y="12" width="18" height="44"/>
+          <rect x="74" y="4" width="18" height="52"/><rect x="96" y="10" width="18" height="46"/><rect x="118" y="6" width="18" height="50"/><rect x="140" y="14" width="18" height="42"/>
+        </g>
+        <g stroke="#2a2430" stroke-width="0.8">
+          <path d="M8 18h150M8 26h150M8 34h150M8 42h150M8 50h150M17 4v52M39 4v52M61 4v52M83 4v52M105 4v52M127 4v52M149 4v52"/>
+        </g>
+        <rect y="56" width="188" height="10" fill="#26202c"/>
+        <g fill="#f4f0e6"><circle cx="20" cy="58" r="3.4"/><circle cx="30" cy="60" r="3.4"/><circle cx="42" cy="58" r="3.4"/><circle cx="54" cy="60" r="3.4"/><circle cx="66" cy="58" r="3.4"/><circle cx="78" cy="60" r="3.4"/><circle cx="90" cy="58" r="3.4"/></g>
+        <g fill="#e8c35a"><circle cx="20" cy="58" r="1.1"/><circle cx="30" cy="60" r="1.1"/><circle cx="42" cy="58" r="1.1"/><circle cx="54" cy="60" r="1.1"/><circle cx="66" cy="58" r="1.1"/><circle cx="78" cy="60" r="1.1"/><circle cx="90" cy="58" r="1.1"/></g>
+        <g><rect x="104" y="54" width="4" height="9" fill="#f4f0e6"/><path d="M106 48c2 2 2 4 0 6-2-2-2-4 0-6z" fill="#f2c230"/>
+           <rect x="114" y="54" width="4" height="9" fill="#f4f0e6"/><path d="M116 48c2 2 2 4 0 6-2-2-2-4 0-6z" fill="#f2c230"/></g>
+        <text x="182" y="30" font-family="Bahnschrift, Arial" font-weight="700" font-size="20" fill="#f4f0e6" text-anchor="end">168</text>
+        <text x="182" y="42" font-family="Bahnschrift, Arial" font-weight="700" font-size="8" fill="#d8cfdd" text-anchor="end">ONE YEAR ON</text>
       </svg>
-      <span class="tag"><span class="n">4</span>EGYPT · CAIRO</span>
-      <h3>Fuel tanker fire on the ring road kills at least 31</h3>
-    </div>
-    <div>
-      <svg viewBox="0 0 150 82" aria-hidden="true">
-        <rect width="150" height="82" fill="#d9dde0"/>
-        <path d="M6 82V42h14v-8h10v48M34 82V30h8V18h4v12h8v52M58 82V46h16v36M80 82V36h12v46M96 82V26h6l3-10 3 10h6v56M118 82V44h14v38" fill="#8d939a"/>
-        <path d="M32 20a9 9 0 0 1 4-17 12 12 0 0 1 22 1 9 9 0 0 1 4 16z" fill="#6b6e73"/>
-        <path d="M36 25l-4 9M46 25l-4 9M56 25l-4 9" stroke="#16181d" stroke-width="2.4" stroke-linecap="round"/>
-        <rect x="98" y="4" width="44" height="34" fill="#f3efe6" stroke="#16181d" stroke-width="2"/>
-        <rect x="98" y="4" width="44" height="11" fill="#b42318"/>
-        <text x="120" y="13" font-size="9" font-weight="700" fill="#fff" text-anchor="middle" font-family="Bahnschrift, Arial">SAT</text>
-        <text x="120" y="34" font-size="18" font-weight="700" fill="#16181d" text-anchor="middle" font-family="Bahnschrift, Arial">28</text>
-        <circle cx="72" cy="60" r="10" fill="#b42318"/>
-        <path d="M72 70v12" stroke="#16181d" stroke-width="1.5"/>
+      <div class="kick"><span class="n">5</span>HONG KONG</div>
+      <h3>A year after the Tai Po fire killed 168, the city mourns</h3>
+      <div class="meta"><span class="badge CONFIRMED">CONFIRMED</span><span class="src">AFP · NIKKEI ASIA</span></div>
+    </article>
+
+    <article>
+      <svg viewBox="0 0 188 66" preserveAspectRatio="xMidYMid slice" width="100%" height="60" aria-label="An open constitution book with the Ashoka wheel, and a candle">
+        <rect width="188" height="66" fill="#f0e4cc"/>
+        <rect x="8" y="54" width="132" height="4" fill="#ff9933"/><rect x="8" y="58" width="132" height="3" fill="#fff"/><rect x="8" y="61" width="132" height="4" fill="#138808"/>
+        <path d="M14 10c18-4 34-2 60 6v38c-26-8-42-10-60-6z" fill="#fbf8f1" stroke="#9c8a6a"/>
+        <path d="M134 10c-18-4-34-2-60 6v38c26-8 42-10 60-6z" fill="#fbf8f1" stroke="#9c8a6a"/>
+        <path d="M22 20c14-2 26 0 44 5M22 27c14-2 26 0 44 5M22 34c14-2 26 0 44 5M22 41c14-2 26 0 44 5" stroke="#b9ab90" stroke-width="1.4"/>
+        <circle cx="104" cy="32" r="13" fill="none" stroke="#0b3a8a" stroke-width="2"/>
+        <path d="M104 19v26M91 32h26M94.8 22.8l18.4 18.4M113.2 22.8l-18.4 18.4M99 20l10 24M109 20l-10 24M92 27l24 10M116 27l-24 10" stroke="#0b3a8a" stroke-width="0.9"/>
+        <circle cx="104" cy="32" r="2.4" fill="#0b3a8a"/>
+        <rect x="160" y="30" width="8" height="26" fill="#fbf8f1" stroke="#9c8a6a"/><path d="M164 18c4 4 4 8 0 11-4-3-4-7 0-11z" fill="#f2a530"/>
+        <text x="164" y="14" font-family="Bahnschrift, Arial" font-weight="700" font-size="9" fill="#b42318" text-anchor="middle">26/11</text>
       </svg>
-      <span class="tag"><span class="n">5</span>US · NEW YORK</span>
-      <h3>Storms push Macy’s 100th Thanksgiving parade to Saturday</h3>
-    </div>
-    <div>
-      <svg viewBox="0 0 150 82" aria-hidden="true">
-        <rect width="150" height="82" fill="#e4e1d6"/>
-        <path d="M0 60l26-24 18 14 24-26 28 26 18-12 36 22v22H0z" fill="#a7a08f"/>
-        <path d="M74 64L104 10" stroke="#16181d" stroke-width="9" stroke-linecap="round"/>
-        <path d="M99 18l8-14 2 10z" fill="#b42318"/>
-        <rect x="38" y="62" width="62" height="10" fill="#16181d"/>
-        <circle cx="48" cy="76" r="5" fill="#16181d"/><circle cx="66" cy="76" r="5" fill="#16181d"/><circle cx="88" cy="76" r="5" fill="#16181d"/>
+      <div class="kick"><span class="n">6</span>INDIA · NEW DELHI · MUMBAI</div>
+      <h3>Constitution Day, and 18 years since the 26/11 attacks</h3>
+      <div class="meta"><span class="badge OFFICIAL">OFFICIAL</span><span class="src">NDTV · THE HINDU</span></div>
+    </article>
+
+    <article>
+      <svg viewBox="0 0 188 66" preserveAspectRatio="xMidYMid slice" width="100%" height="60" aria-label="A chessboard and a score of one all">
+        <rect width="188" height="66" fill="#2b2f36"/>
+        <rect x="6" y="6" width="108" height="54" fill="#8a7458"/>
+        <g fill="#d9cfb8">
+          <rect x="6" y="6" width="13.5" height="13.5"/><rect x="33" y="6" width="13.5" height="13.5"/><rect x="60" y="6" width="13.5" height="13.5"/><rect x="87" y="6" width="13.5" height="13.5"/>
+          <rect x="19.5" y="19.5" width="13.5" height="13.5"/><rect x="46.5" y="19.5" width="13.5" height="13.5"/><rect x="73.5" y="19.5" width="13.5" height="13.5"/><rect x="100.5" y="19.5" width="13.5" height="13.5"/>
+          <rect x="6" y="33" width="13.5" height="13.5"/><rect x="33" y="33" width="13.5" height="13.5"/><rect x="60" y="33" width="13.5" height="13.5"/><rect x="87" y="33" width="13.5" height="13.5"/>
+          <rect x="19.5" y="46.5" width="13.5" height="13.5"/><rect x="46.5" y="46.5" width="13.5" height="13.5"/><rect x="73.5" y="46.5" width="13.5" height="13.5"/><rect x="100.5" y="46.5" width="13.5" height="13.5"/>
+        </g>
+        <g fill="#15171c"><path d="M40 44h14l-2-4h-3l2-12h-3l1-4h-3l1 4h-3l2 12h-3z"/><circle cx="47" cy="22" r="2.5"/></g>
+        <g fill="#f4f0e6" stroke="#15171c"><path d="M74 44h12l-2-4h-2.5l1.5-9a4 4 0 1 0-6 0l1.5 9H76z"/></g>
+        <text x="152" y="36" font-family="Bahnschrift, Arial" font-weight="700" font-size="22" fill="#f4f0e6" text-anchor="middle">1–1</text>
+        <text x="152" y="52" font-family="Bahnschrift, Arial" font-weight="700" font-size="9.5" fill="#e8c35a" text-anchor="middle">GAME 3</text>
       </svg>
-      <span class="tag"><span class="n">6</span>NORTH KOREA</span>
-      <h3>Kim urges wider deployment of tactical nuclear weapons</h3>
-    </div>
-    <div>
-      <svg viewBox="0 0 150 82" aria-hidden="true">
-        <rect width="150" height="82" fill="#e7e2d6"/>
-        <path d="M30 26L75 8l45 18z" fill="#16181d"/>
-        <rect x="30" y="27" width="90" height="5" fill="#16181d"/>
-        <path d="M38 34h7v34h-7zM56 34h7v34h-7zM74 34h7v34h-7zM92 34h7v34h-7zM108 34h7v34h-7z" fill="#8d939a"/>
-        <rect x="26" y="68" width="98" height="6" fill="#16181d"/>
-        <rect x="104" y="44" width="30" height="13" rx="2" transform="rotate(-30 119 50)" fill="#b42318"/>
-        <path d="M112 58l-12 20" stroke="#b42318" stroke-width="5" stroke-linecap="round"/>
+      <div class="kick"><span class="n">7</span>CHESS · GENEVA</div>
+      <h3>Gukesh and Sindarov play Game 3, level at 1–1</h3>
+      <div class="meta"><span class="badge SCHEDULED">SCHEDULED</span><span class="src">FIDE</span></div>
+    </article>
+
+    <article>
+      <svg viewBox="0 0 188 66" preserveAspectRatio="xMidYMid slice" width="100%" height="60" aria-label="Server racks and a bar chart with a tall last bar">
+        <rect width="188" height="66" fill="#e2e8e4"/>
+        <g fill="#2b3038"><rect x="8" y="8" width="22" height="52"/><rect x="34" y="8" width="22" height="52"/><rect x="60" y="8" width="22" height="52"/></g>
+        <g fill="#5fd38a"><circle cx="13" cy="15" r="1.4"/><circle cx="13" cy="25" r="1.4"/><circle cx="13" cy="35" r="1.4"/><circle cx="13" cy="45" r="1.4"/>
+          <circle cx="39" cy="15" r="1.4"/><circle cx="39" cy="25" r="1.4"/><circle cx="39" cy="35" r="1.4"/><circle cx="39" cy="45" r="1.4"/>
+          <circle cx="65" cy="15" r="1.4"/><circle cx="65" cy="25" r="1.4"/><circle cx="65" cy="35" r="1.4"/><circle cx="65" cy="45" r="1.4"/></g>
+        <g stroke="#555b64" stroke-width="1"><path d="M17 15h10M17 25h10M17 35h10M17 45h10M43 15h10M43 25h10M43 35h10M43 45h10M69 15h10M69 25h10M69 35h10M69 45h10"/></g>
+        <g fill="#8d939a"><rect x="96" y="46" width="12" height="14"/><rect x="112" y="42" width="12" height="18"/><rect x="128" y="44" width="12" height="16"/></g>
+        <rect x="144" y="22" width="12" height="38" fill="#b42318"/>
+        <path d="M92 60h70" stroke="#15171c" stroke-width="1.5"/>
+        <text x="182" y="16" font-family="Bahnschrift, Arial" font-weight="700" font-size="15" fill="#b42318" text-anchor="end">+12.2%</text>
       </svg>
-      <span class="tag"><span class="n">7</span>ISRAEL</span>
-      <h3>Judges urge dropping key charges against Netanyahu</h3>
-    </div>
-    <div>
-      <svg viewBox="0 0 150 82" aria-hidden="true">
-        <rect width="150" height="82" fill="#16181d"/>
-        <circle cx="20" cy="12" r="1" fill="#f3efe6"/><circle cx="130" cy="70" r="1" fill="#f3efe6"/><circle cx="140" cy="16" r="1" fill="#f3efe6"/><circle cx="8" cy="66" r="1" fill="#f3efe6"/>
-        <path d="M22 46c-2-16 12-28 28-26 15 2 22 14 19 28-3 15-17 22-31 19-10-2-15-10-16-21z" fill="#8d939a"/>
-        <path d="M88 56c0-8 7-13 14-12 8 1 12 8 10 15s-9 11-16 9c-5-2-8-6-8-12z" fill="#b5ab97"/>
-        <ellipse cx="100" cy="56" rx="6" ry="4" fill="#16181d" stroke="#b42318" stroke-width="2"/>
-        <rect x="114" y="18" width="8" height="8" fill="#f3efe6"/>
-        <rect x="102" y="20" width="10" height="4" fill="#b42318"/><rect x="124" y="20" width="10" height="4" fill="#b42318"/>
+      <div class="kick"><span class="n">8</span>AUSTRALIA · CANBERRA</div>
+      <h3>Data centres drive the biggest investment jump since 2011</h3>
+      <div class="meta"><span class="badge OFFICIAL">OFFICIAL</span><span class="src">ABS</span></div>
+    </article>
+
+    <article>
+      <svg viewBox="0 0 188 66" preserveAspectRatio="xMidYMid slice" width="100%" height="60" aria-label="A racket lying on an empty blue hard court">
+        <rect width="188" height="66" fill="#2f6fb2"/>
+        <path d="M30 6h128l22 56H8z" fill="#3b82c4" stroke="#f4f0e6" stroke-width="1.6"/>
+        <path d="M24 30h140" stroke="#f4f0e6" stroke-width="1.2"/><path d="M22 34h144" stroke="#15171c" stroke-width="2.4"/>
+        <path d="M94 6v28" stroke="#f4f0e6" stroke-width="1.2"/>
+        <g transform="rotate(-24 70 50)">
+          <ellipse cx="70" cy="48" rx="15" ry="10" fill="none" stroke="#15171c" stroke-width="3"/>
+          <path d="M57 48h26M70 39v18M62 42v12M78 42v12" stroke="#d9d4c7" stroke-width="0.8"/>
+          <rect x="85" y="46" width="22" height="4" fill="#15171c"/>
+        </g>
+        <circle cx="122" cy="52" r="4.5" fill="#d7f05a"/>
+        <text x="176" y="24" font-family="Bahnschrift, Arial" font-weight="700" font-size="12" fill="#fff" text-anchor="end">AO 2027</text>
+        <path d="M134 14l44 14" stroke="#b42318" stroke-width="2.5"/>
       </svg>
-      <span class="tag"><span class="n">8</span>SPACE</span>
-      <h3>Hera probe images the crater NASA’s DART left on an asteroid</h3>
-    </div>
+      <div class="kick"><span class="n">9</span>TENNIS · MELBOURNE</div>
+      <h3>Knee surgery rules Sinner out of the Australian Open</h3>
+      <div class="meta"><span class="badge CONFIRMED">CONFIRMED</span><span class="src">AP · ESPN</span></div>
+    </article>
+
+    <article>
+      <svg viewBox="0 0 188 66" preserveAspectRatio="xMidYMid slice" width="100%" height="60" aria-label="A container ship carrying a microchip, tagged 15 per cent">
+        <rect width="188" height="66" fill="#cfdde6"/>
+        <rect y="48" width="188" height="18" fill="#7fa3bd"/>
+        <path d="M14 40h138l-10 14H24z" fill="#2b3038"/>
+        <g><rect x="26" y="30" width="16" height="10" fill="#c0392b"/><rect x="44" y="30" width="16" height="10" fill="#2e7d4f"/><rect x="62" y="30" width="16" height="10" fill="#d4a017"/>
+           <rect x="34" y="20" width="16" height="10" fill="#1d3a6e"/><rect x="52" y="20" width="16" height="10" fill="#c0392b"/></g>
+        <rect x="88" y="22" width="22" height="18" fill="#15171c"/>
+        <g stroke="#8d939a" stroke-width="1.4"><path d="M92 18v4M98 18v4M104 18v4M92 40v-0M84 26h4M84 32h4M84 37h4M110 26h4M110 32h4M110 37h4"/></g>
+        <rect x="93" y="27" width="12" height="8" fill="#5a606a"/>
+        <rect x="132" y="16" width="10" height="24" fill="#e7e2d5"/>
+        <circle cx="166" cy="20" r="14" fill="#b42318"/>
+        <text x="166" y="25" font-family="Bahnschrift, Arial" font-weight="700" font-size="12" fill="#fff" text-anchor="middle">15%</text>
+      </svg>
+      <div class="kick"><span class="n">10</span>TAIWAN · TAIPEI</div>
+      <h3>Taiwan expects to keep its agreed 15% US tariff rate</h3>
+      <div class="meta"><span class="badge REPORTED">REPORTED</span><span class="src">REUTERS</span></div>
+    </article>
+
+    <article>
+      <svg viewBox="0 0 188 66" preserveAspectRatio="xMidYMid slice" width="100%" height="60" aria-label="Rising candlestick chart and a closed sign">
+        <rect width="188" height="66" fill="#efebe2"/>
+        <g stroke="#15171c" stroke-width="1"><path d="M16 36v22M30 40v20M44 30v22M58 34v18M72 22v24M86 16v20M100 10v20"/></g>
+        <g><rect x="12" y="42" width="8" height="12" fill="#2c6a3a"/><rect x="26" y="44" width="8" height="10" fill="#b42318"/><rect x="40" y="34" width="8" height="14" fill="#2c6a3a"/>
+           <rect x="54" y="38" width="8" height="10" fill="#b42318"/><rect x="68" y="26" width="8" height="16" fill="#2c6a3a"/><rect x="82" y="20" width="8" height="12" fill="#2c6a3a"/><rect x="96" y="14" width="8" height="12" fill="#2c6a3a"/></g>
+        <text x="8" y="13" font-family="Bahnschrift, Arial" font-weight="700" font-size="9.5" fill="#2c6a3a">NIKKEI +1.3%</text>
+        <path d="M150 6l-14 14M150 6l14 14" stroke="#15171c" stroke-width="1.2"/><circle cx="150" cy="6" r="2" fill="#15171c"/>
+        <rect x="122" y="20" width="56" height="26" rx="3" fill="#b42318"/>
+        <text x="150" y="31" font-family="Bahnschrift, Arial" font-weight="700" font-size="9" fill="#fff" text-anchor="middle">WALL ST</text>
+        <text x="150" y="42" font-family="Bahnschrift, Arial" font-weight="700" font-size="10" fill="#fff" text-anchor="middle">CLOSED</text>
+      </svg>
+      <div class="kick"><span class="n">11</span>MARKETS</div>
+      <h3>Asian stocks rebound as Wall Street shuts for Thanksgiving</h3>
+      <div class="meta"><span class="badge CONFIRMED">CONFIRMED</span><span class="src">WSJ · FT</span></div>
+    </article>
+
+    <article>
+      <svg viewBox="0 0 188 66" preserveAspectRatio="xMidYMid slice" width="100%" height="60" aria-label="New towers and a crane beside an Indonesian flag">
+        <rect width="188" height="66" fill="#dbe8ef"/>
+        <g fill="#7c8b99"><rect x="20" y="26" width="16" height="34"/><rect x="40" y="14" width="18" height="46"/><rect x="62" y="30" width="14" height="30"/>
+          <rect x="80" y="20" width="16" height="40"/><rect x="100" y="34" width="20" height="26"/></g>
+        <g fill="#c3d3de"><rect x="44" y="20" width="10" height="2"/><rect x="44" y="28" width="10" height="2"/><rect x="44" y="36" width="10" height="2"/><rect x="84" y="26" width="8" height="2"/><rect x="84" y="34" width="8" height="2"/></g>
+        <path d="M130 60V12M122 14h40M130 14l28-2M156 12v14" stroke="#d4a017" stroke-width="2.6" fill="none"/>
+        <rect x="150" y="26" width="12" height="8" fill="#9aa5ae"/>
+        <rect y="60" width="188" height="6" fill="#6b7a5a"/>
+        <rect x="6" y="6" width="22" height="7" fill="#ce1126"/><rect x="6" y="13" width="22" height="7" fill="#fff" stroke="#c9c2b2" stroke-width="0.5"/>
+        <text x="182" y="54" font-family="Bahnschrift, Arial" font-weight="700" font-size="14" fill="#1d3a6e" text-anchor="end">$50bn</text>
+      </svg>
+      <div class="kick"><span class="n">12</span>INDONESIA · JAKARTA</div>
+      <h3>Chinese group to build ten smart-city sites for $50bn</h3>
+      <div class="meta"><span class="badge REPORTED">REPORTED</span><span class="src">SCMP</span></div>
+    </article>
+
+    <article>
+      <svg viewBox="0 0 188 66" preserveAspectRatio="xMidYMid slice" width="100%" height="60" aria-label="British and EU flags above a treaty with a seal">
+        <rect width="188" height="66" fill="#e6e3dc"/>
+        <g transform="translate(14 8)">
+          <rect width="48" height="28" fill="#012169"/>
+          <path d="M0 0l48 28M48 0L0 28" stroke="#fff" stroke-width="5.5"/><path d="M0 0l48 28M48 0L0 28" stroke="#c8102e" stroke-width="2"/>
+          <path d="M24 0v28M0 14h48" stroke="#fff" stroke-width="8"/><path d="M24 0v28M0 14h48" stroke="#c8102e" stroke-width="4.5"/>
+        </g>
+        <g transform="translate(126 8)">
+          <rect width="48" height="28" fill="#163a7a"/>
+          <g fill="#f2c230"><circle cx="24" cy="5" r="1.5"/><circle cx="31" cy="7" r="1.5"/><circle cx="33" cy="14" r="1.5"/><circle cx="31" cy="21" r="1.5"/><circle cx="24" cy="23" r="1.5"/><circle cx="17" cy="21" r="1.5"/><circle cx="15" cy="14" r="1.5"/><circle cx="17" cy="7" r="1.5"/></g>
+        </g>
+        <rect x="70" y="10" width="48" height="50" fill="#fbf8f1" stroke="#9c8a6a"/>
+        <path d="M76 18h36M76 24h36M76 30h36M76 36h28" stroke="#9aa0a8" stroke-width="1.4"/>
+        <circle cx="106" cy="50" r="6" fill="#b42318"/>
+        <path d="M78 52c6-6 10 4 16-2" stroke="#15171c" stroke-width="1.2" fill="none"/>
+      </svg>
+      <div class="kick"><span class="n">13</span>UK · EU · LONDON</div>
+      <h3>Britain publishes the new treaties agreed with the EU</h3>
+      <div class="meta"><span class="badge REPORTED">REPORTED</span><span class="src">BBC</span></div>
+    </article>
   </section>
 
   <div class="hr"></div>
 
-  <section class="rowC">
-    <div class="map">
-      <svg viewBox="48 2 290 118" aria-hidden="true">
-        <rect x="48" y="2" width="290" height="118" fill="#e9ece9"/>
-        <g fill="#aaa189">
-          <path d="M12 9L24 4 50 5 85 3 100 2 118 15 125 23 110 32 104 40 100 50 90 45 83 49 83 56 93 54 97 65 102 67 98 67 88 61 75 56 70 52 63 43 56 35 56 27 45 18 30 15 15 15z"/>
-          <path d="M130 0L160 0 158 5 138 15 128 11 122 0z"/>
-          <path d="M103 67L118 64 130 75 145 82 140 97 132 103 122 113 115 116 112 130 106 125 107 112 109 93 103 87 99 80 100 74z"/>
-          <path d="M171 38L171 32 179 29 176 27 182 24 188 21 190 18 192 21 200 20 204 15 210 5 240 5 260 2 290 0 320 3 360 7 360 10 340 15 337 24 320 20 315 21 320 27 310 33 309 40 306 38 302 35 298 37 302 45 300 51 290 55 288 63 285 66 281 62 283 74 278 67 278 59 272 54 268 53 260 60 257 67 253 58 249 53 242 50 237 49 239 53 232 59 223 62 215 47 213 44 215 39 210 39 206 35 203 38 200 35 198 35 196 37 192 31 188 31 183 32 179 38z"/>
-          <path d="M185 17L185 13 195 6 208 4 210 6 205 10 198 15 192 19z"/>
-          <path d="M175 25L181 24 178 19 175 17 174 20z"/>
-          <path d="M163 54L170 45 174 39 190 38 191 42 200 44 212 44 215 51 219 60 223 63 231 64 228 71 220 78 220 90 215 99 212 104 200 110 197 104 192 92 193 80 189 71 185 70 172 71 167 67 163 61z"/>
-          <path d="M224 100L227 100 230 90 228 88z"/>
-          <path d="M294 97L302 93 310 87 317 87 322 86 326 94 333 101 330 112 320 113 311 106 295 109 293 101z"/>
-          <path d="M310 44L315 41 320 39 322 32 325 31 321 34 319 38 313 42z"/>
-          <path d="M275 70L286 81 284 80 278 73z"/><path d="M285 81L294 83 294 82z"/>
-          <path d="M289 74L297 68 299 74 296 79 290 78z"/><path d="M311 76L321 78 330 85 321 84z"/>
-          <path d="M301 57L306 68 302 68z"/>
-          <path d="M227 44L231 43 236 46 239 49 237 52 232 51 228 48z" fill="#e9ece9"/>
-        </g>
-        <g stroke="#16181d" stroke-width="0.8" fill="none">
-          <path d="M103 36.1L97 44"/><path d="M106 34.3L110 26"/>
-          <path d="M211.2 45L203 54"/><path d="M215.2 43.2L218 33"/><path d="M236.3 48.4L242 57"/>
-        </g>
-        <g fill="#16181d">
-          <circle cx="122" cy="109.6" r="1.6"/><circle cx="87" cy="33" r="1.6"/><circle cx="180" cy="23.5" r="1.6"/>
-          <circle cx="193.4" cy="22.5" r="1.6"/><circle cx="214.5" cy="43.5" r="1.6"/><circle cx="186" cy="65" r="1.6"/>
-          <circle cx="183.4" cy="68.5" r="1.6"/><circle cx="214" cy="63" r="1.6"/><circle cx="219.7" cy="78.2" r="1.6"/>
-          <circle cx="294" cy="52.7" r="1.6"/><circle cx="252.8" cy="56" r="1.6"/><circle cx="286.8" cy="81.6" r="1.6"/>
-          <circle cx="296.4" cy="35.1" r="1.6"/><circle cx="186.1" cy="28.8" r="1.6"/><circle cx="247" cy="45" r="1.6"/><circle cx="220.7" cy="38.5" r="1.6"/><circle cx="81" cy="55.6" r="1.6"/><circle cx="331" cy="108.9" r="1.6"/>
-        </g>
-        <g font-family="Bahnschrift, Arial" font-weight="700" font-size="7" text-anchor="middle" fill="#fff">
-          <circle cx="97" cy="44" r="5" fill="#b42318"/><text x="97" y="46.5">1</text>
-          <circle cx="222.3" cy="19.6" r="5" fill="#b42318"/><text x="222.3" y="22.1">2</text>
-          <circle cx="242" cy="57" r="5" fill="#b42318"/><text x="242" y="59.5">3</text>
-          <circle cx="203" cy="54" r="5" fill="#b42318"/><text x="203" y="56.5">4</text>
-          <circle cx="110" cy="26" r="5" fill="#b42318"/><text x="110" y="28.5">5</text>
-          <circle cx="305.7" cy="36" r="5" fill="#b42318"/><text x="305.7" y="38.5">6</text>
-          <circle cx="218" cy="33" r="5" fill="#b42318"/><text x="218" y="35.5">7</text>
-        </g>
-      </svg>
-      <p class="maplegend">Red numbers: stories 1–7 above. Dots: the stories listed by region.</p>
-      <div class="sec">MARKETS &amp; TECH</div>
-      <ul>
-        <li><b>US regulator clears SpaceX for up to 1 million data satellites</b></li>
-        <li><b>AI fears hit Wall Street; Nasdaq and S&amp;P 500 close lower</b></li>
-        <li><b>Bitcoin slides below $60,000</b></li>
-      </ul>
-      <div class="sec">SPORT &amp; CULTURE</div>
-      <ul>
-        <li><b>Chess world title: Gukesh and Sindarov draw game 2 in 20 moves</b></li>
-        <li><b>Duran Duran guitarist Andy Taylor dies at 65</b></li>
-        <li><b>Pitt and Jolie settle their French winery fight</b></li>
-      </ul>
+  <section class="bottom">
+    <div>
+      <div class="sec">WHERE IT HAPPENED · PINS 1–13, DOTS 14–30</div>
+      <div class="map">
+        <svg viewBox="44 0 318 130" width="326" height="133" aria-label="World map with numbered pins">
+          <rect x="44" y="0" width="318" height="130" fill="#e9ece9"/>
+          <g fill="#b9b19c">
+            <path d="M12 9L24 4 50 5 85 3 100 2 118 15 125 23 110 32 104 40 100 50 90 45 83 49 83 56 93 54 97 65 102 67 98 67 88 61 75 56 70 52 63 43 56 35 56 27 45 18 30 15 15 15z"/>
+            <path d="M130 0L160 0 158 5 138 15 128 11 122 0z"/>
+            <path d="M103 67L118 64 130 75 145 82 140 97 132 103 122 113 115 116 112 130 106 125 107 112 109 93 103 87 99 80 100 74z"/>
+            <path d="M171 38L171 32 179 29 176 27 182 24 188 21 190 18 192 21 200 20 204 15 210 5 240 5 260 2 290 0 320 3 360 7 360 10 340 15 337 24 320 20 315 21 320 27 310 33 309 40 306 38 302 35 298 37 302 45 300 51 290 55 288 63 285 66 281 62 283 74 278 67 278 59 272 54 268 53 260 60 257 67 253 58 249 53 242 50 237 49 239 53 232 59 223 62 215 47 213 44 215 39 210 39 206 35 203 38 200 35 198 35 196 37 192 31 188 31 183 32 179 38z"/>
+            <path d="M185 17L185 13 195 6 208 4 210 6 205 10 198 15 192 19z"/>
+            <path d="M175 25L181 24 178 19 175 17 174 20z"/>
+            <path d="M163 54L170 45 174 39 190 38 191 42 200 44 212 44 215 51 219 60 223 63 231 64 228 71 220 78 220 90 215 99 212 104 200 110 197 104 192 92 193 80 189 71 185 70 172 71 167 67 163 61z"/>
+            <path d="M224 100L227 100 230 90 228 88z"/>
+            <path d="M294 97L302 93 310 87 317 87 322 86 326 94 333 101 330 112 320 113 311 106 295 109 293 101z"/>
+            <path d="M310 44L315 41 320 39 322 32 325 31 321 34 319 38 313 42z"/>
+            <path d="M275 70L286 81 284 80 278 73z"/><path d="M285 81L294 83 294 82z"/>
+            <path d="M289 74L297 68 299 74 296 79 290 78z"/><path d="M311 76L321 78 330 85 321 84z"/>
+            <path d="M301 57L306 68 302 68z"/>
+            <path d="M352.7 109.4L355 111 358.5 112.7 356 115 355 116.6 353.5 114 354 112z"/>
+            <path d="M352.8 115.6L354.2 116.6 352 118.8 348.5 121.6 346.5 121.2 349 118.6z"/>
+            <path d="M227 44L231 43 236 46 239 49 237 52 232 51 228 48z" fill="#e9ece9"/>
+          </g>
+          <g fill="#b42318">
+            <circle cx="106" cy="34.3" r="1.4"/><circle cx="305.8" cy="36" r="1.4"/><circle cx="184.4" cy="24.2" r="1.4"/><circle cx="307" cy="37.4" r="1.4"/>
+            <circle cx="294.2" cy="52.7" r="1.4"/><circle cx="252.9" cy="55.9" r="1.4"/><circle cx="186.1" cy="28.8" r="1.4"/><circle cx="329.1" cy="110.3" r="1.4"/>
+            <circle cx="325" cy="112.8" r="1.4"/><circle cx="301.6" cy="50" r="1.4"/><circle cx="319.7" cy="39.3" r="1.4"/><circle cx="286.8" cy="81.2" r="1.4"/><circle cx="180" cy="23.5" r="1.4"/>
+          </g>
+          <g fill="#15171c">
+            <circle cx="285.8" cy="54" r="1.5"/><circle cx="319.7" cy="39.3" r="1.5"/><circle cx="257.2" cy="46.4" r="1.5"/>
+            <circle cx="231.5" cy="49.7" r="1.5"/><circle cx="352.6" cy="118.5" r="1.5"/><circle cx="214.4" cy="43.5" r="1.5"/>
+            <circle cx="182.4" cy="26.1" r="1.5"/><circle cx="96.9" cy="32.7" r="1.5"/><circle cx="104.8" cy="35" r="1.5"/>
+            <circle cx="218.7" cy="66" r="1.5"/><circle cx="208" cy="101.2" r="1.5"/><circle cx="280.5" cy="61.3" r="1.5"/>
+          </g>
+          <g stroke="#15171c" stroke-width="0.7" fill="none">
+            <path d="M106 34.3L112 26"/><path d="M305.8 36L298 27"/><path d="M307 37.4L318 30"/><path d="M294.2 52.7L292 62"/>
+            <path d="M301.6 50L310 52"/><path d="M186.1 28.8L190 37"/><path d="M184.4 24.2L186 15"/><path d="M180 23.5L171 17"/>
+            <path d="M329.1 110.3L338 104"/><path d="M325 112.8L316 116"/><path d="M286.8 81.2L280 90"/><path d="M252.9 55.9L246 62"/>
+          </g>
+          <g font-family="Bahnschrift, Arial" font-weight="700" font-size="6.5" text-anchor="middle" fill="#fff">
+            <circle cx="112" cy="26" r="4.6" fill="#b42318"/><text x="112" y="28.3">1</text>
+            <circle cx="298" cy="27" r="4.6" fill="#b42318"/><text x="298" y="29.3">2</text>
+            <circle cx="186" cy="15" r="4.6" fill="#b42318"/><text x="186" y="17.3">3</text>
+            <circle cx="318" cy="30" r="4.6" fill="#b42318"/><text x="318" y="32.3">4</text>
+            <circle cx="292" cy="62" r="4.6" fill="#b42318"/><text x="292" y="64.3">5</text>
+            <circle cx="246" cy="62" r="4.6" fill="#b42318"/><text x="246" y="64.3">6</text>
+            <circle cx="190" cy="37" r="4.6" fill="#b42318"/><text x="190" y="39.3">7</text>
+            <circle cx="338" cy="104" r="4.6" fill="#b42318"/><text x="338" y="106.3">8</text>
+            <circle cx="316" cy="116" r="4.6" fill="#b42318"/><text x="316" y="118.3">9</text>
+            <circle cx="310" cy="52" r="4.6" fill="#b42318"/><text x="310" y="54.3">10</text>
+            <circle cx="326" cy="44" r="4.6" fill="#b42318"/><text x="326" y="46.3">11</text>
+            <circle cx="280" cy="90" r="4.6" fill="#b42318"/><text x="280" y="92.3">12</text>
+            <circle cx="171" cy="17" r="4.6" fill="#b42318"/><text x="171" y="19.3">13</text>
+          </g>
+          <path d="M319.7 39.3L326 44" stroke="#15171c" stroke-width="0.7"/>
+        </svg>
+      </div>
     </div>
-    <div class="cols">
-      <div>
-        <div class="sec">AMERICAS</div>
-        <ul>
-          <li><b>Thanksgiving storms flood coasts from California to Florida</b></li>
-          <li><b>Argentina slips into recession, testing Milei</b></li>
-          <li><b>US Army detonates Iowa bomb chemicals; no toxic plume</b></li>
-          <li><b>Mexico protests as US deports a wanted TV host to Spain</b></li>
-        </ul>
-        <div class="sec">EUROPE</div>
-        <ul>
-          <li><b>UK: Poundland collapses, 11,000 jobs at risk</b></li>
-          <li><b>Germany’s Merz: ‘Russia wants more than Ukraine’</b></li>
-        </ul>
-      </div>
-      <div>
-        <div class="sec">MIDDLE EAST &amp; AFRICA</div>
-        <ul>
-          <li><b>Israeli strike kills senior Hamas official and family in Gaza City</b></li>
-          <li><b>Gaza journalist killed by Israel wins Rory Peck prize</b></li>
-          <li><b>Syria: Islamic State attack kills two security officers</b></li>
-          <li><b>Nigeria: suspected militants kill at least 30 in Niger State</b></li>
-          <li><b>Nigeria seizes $220m of meth, arrests five Mexicans</b></li>
-          <li><b>Sudan: drone strikes kill at least 14 civilians</b></li>
-          <li><b>Kenya: cult leader Paul Mackenzie convicted again</b></li>
-          <li><b>Nollywood star Pete Edochie dies at 79</b></li>
-        </ul>
-      </div>
-      <div>
-        <div class="sec">ASIA-PACIFIC</div>
-        <ul>
-          <li><b>Hong Kong marks a year since the Tai Po fire killed 168</b></li>
-          <li><b>India remembers the 26/11 Mumbai attacks, 18 years on</b></li>
-          <li><b>Indonesia: 9 dead, 17 trapped as illegal gold mine floods</b></li>
-          <li><b>China: Xi’s purge topples a rising party star</b></li>
-          <li><b>Pakistan: man on moving motorbike catches cricket ball</b></li>
-          <li><b>South Korea: rail union starts work-to-rule; delays feared</b></li>
-          <li><b>Australia: data centres drive biggest investment jump since mining boom</b></li>
-        </ul>
-      </div>
+    <div>
+      <div class="sec">ALSO ON THURSDAY 26 NOVEMBER · STORIES 14–30</div>
+      <ul class="also">
+        <li><i>14</i><b>Seoul</b> — Lee rules out sending forces to Hormuz <span>UPI</span></li>
+        <li><i>15</i><b>Seoul</b> — Korea, Saudi Arabia widen oil stockpile deal <span>Chosun</span></li>
+        <li><i>16</i><b>Hanoi</b> — Vietnam pushes to close a US trade deal <span>Reuters</span></li>
+        <li><i>17</i><b>Tokyo</b> — JAXA unveils joint India moon rover <span>Japan Times</span></li>
+        <li><i>18</i><b>Hong Kong</b> — IPOs set for a five-year high, EY says <span>China Daily</span></li>
+        <li><i>19</i><b>New Delhi</b> — Air India seeks $650m in cost cuts <span>Bloomberg</span></li>
+        <li><i>20</i><b>Doha</b> — India A v Sri Lanka A, Asia Cup semi <span>BCCI</span></li>
+        <li><i>21</i><b>Gaza City</b> — Israeli attack kills three, reports say <span>MEE</span></li>
+        <li><i>22</i><b>Addis Ababa</b> — Africa CDC chief in turmoil amid Ebola <span>NYT</span></li>
+        <li><i>23</i><b>Johannesburg</b> — Plan for 5.2 GW of small reactors <span>OilPrice</span></li>
+        <li><i>24</i><b>Canberra</b> — On track to miss 2035 climate goal <span>Guardian</span></li>
+        <li><i>25</i><b>Christchurch</b> — Pant plays club game before 2nd Test <span>NDTV</span></li>
+        <li><i>26</i><b>Paris</b> — Students march across the capital <span>Sortir à Paris</span></li>
+        <li><i>27</i><b>London</b> — Met Office: fewer frosts, more hot days <span>BBC</span></li>
+        <li><i>28</i><b>Philadelphia</b> — Parade kept off streets by wind <span>Inquirer</span></li>
+        <li><i>29</i><b>Detroit</b> — Bears at Lions opens NFL Thanksgiving <span>NFL.com</span></li>
+        <li><i>30</i><b>Bangkok</b> — Ammonia carrier salvage planned <span>Maritime Exec.</span></li>
+      </ul>
     </div>
   </section>
 
-  <p class="foot">Every story happened or was first reported on 26 November 2026 in at least one time zone and was checked against two or more news outlets. Photos are AI-made illustrations.</p>
+  <div class="utc"><span class="h"><b style="color:inherit">THE DAY IN UTC</b></span>
+    <span><b>00:30</b> Canberra: investment data</span><span><b>00:50</b> Seoul: rate decision</span>
+    <span><b>13:30</b> New York: parade was due</span><span><b>14:00</b> Geneva: chess Game 3</span><span><b>17:30</b> Detroit: NFL Thanksgiving opens</span></div>
+
+  <div class="check"><b>DATE CHECK — LEFT OUT AS 25 NOVEMBER NEWS:</b> the US tariff plan on 14 economies · Cairo tanker fire · Ukraine's strike on Savasleyka air base · FCC approval of SpaceX's satellites · Israeli judges on the Netanyahu case · chess Game 2 · Shenzhou-24 docking · Sinner's surgery.
+    <br><b>HOW SURE:</b> CONFIRMED = two or more outlets · OFFICIAL = a government's or organiser's own act · STATE MEDIA = a regime's claim · REPORTED = one outlet · SCHEDULED = set for 26 November</div>
+  <div class="foot"><span>Every story happened, or was first reported, on Thursday 26 November 2026 in its own time zone. Sources are named on each story.</span><span>All pictures are drawings, not photographs.</span></div>
 </body>
 </html>
